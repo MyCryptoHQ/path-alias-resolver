@@ -1,0 +1,25 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+      "no-console": false,
+      "one-line": false,
+      "no-var-requires": false,
+      "max-classes-per-file": false,
+      "quotemark": [true, "single"],
+      "member-ordering": [
+        true,
+        [
+          "static-field",
+          "instance-field",
+          "constructor",
+          "static-method",
+          "instance-method"
+        ]
+      ]
+    },
+    "rulesDirectory": []
+}
