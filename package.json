@@ -1,12 +1,16 @@
 {
   "name": "path-alias-resolver",
-  "version": "1.0.0-alpha",
+  "version": "1.0.3-alpha",
   "description": "Resolve aliases in js/ts files",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
     "lint": "tslint --project ./"
   },
+  "files": [
+    "lib/",
+    "gulp.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/salchichongallo/path-alias-resolver.git"
