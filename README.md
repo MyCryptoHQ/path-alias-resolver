@@ -25,7 +25,7 @@ Due to the nature of the regex used to resolve multi-line imports, it currently 
 
 Let's say you have a project that has its source files in `<rootDir>/src`, and you want to ignore any `*.spec.ts` or `*.test.ts` files.
 
-## Example tsconfig.json
+### Example tsconfig.json
 
 ```json
 {
@@ -56,7 +56,7 @@ Let's say you have a project that has its source files in `<rootDir>/src`, and y
 }
 ```
 
-Example File Tree
+### Example File Tree
 
 ```
 ├── coverage
@@ -75,7 +75,7 @@ Example File Tree
 └── tslint.json
 ```
 
-Corresponding script `gulpfile.js` to use with above setup
+### Corresponding script `gulpfile.js` to use with above setup
 
 ```js
 const gulp = require('gulp');
