@@ -1,4 +1,4 @@
-# path-alias-resolver
+# myc-path-alias-resolver
 
 Resolve aliases in ts files. Useful for when you want to publish a package with the `typings` file in `package.json`, as a project consuming your package will not respect your package's baseurl and path mappings. This will convert all path mappings to relative paths.
 
