@@ -21,6 +21,8 @@ Due to the nature of the regex used to resolve multi-line imports, it currently 
 }
 ```
 
+Also, support for resolving aliased exports such as `export * from '@src/ethUnits';` is not implemented
+
 # How to use
 
 Let's say you have a project that has its source files in `<rootDir>/src`, and you want to ignore any `*.spec.ts` or `*.test.ts` files.
