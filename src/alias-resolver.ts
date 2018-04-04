@@ -1,55 +1,66 @@
 const { resolvePath } = require('babel-plugin-module-resolver');
-
 import { toPosixPath } from './utils';
 
-export class AliasResolver
-{
-  protected root: string;
+export class AliasResolver {
+  public static create(root: string, aliases: any = {}): AliasResolver {
+    return new AliasResolver(root, aliases);
+  }
+  private readonly root: string;
+  private readonly aliases: any = {};
+  private readonly singleLineRule = /(?:require|import)[^'"]*(?:'|")([^'"]*)(?:'|")/gi;
 
-  protected aliases: any = {};
-
-  protected readonly rule = /(?:require|import)[^'"]*(?:'|")([^'"]*)(?:'|")/gi;
-
-  protected constructor(root: string, aliases: any = {})
-  {
+  private constructor(root: string, aliases: any = {}) {
     this.root = root;
-
     this.aliases = aliases;
   }
 
-  public static create(root: string, aliases: any = {}): AliasResolver
-  {
-    return new AliasResolver(root, aliases);
-  }
-
-  public resolve(filePath: string, content: string): string
-  {
+  public resolve(filePath: string, content: string): string {
     let lines = content.split('\n');
-
-    lines = lines.map((line) => this.parseLine(line, filePath));
-
+    lines = this.joinImports(lines);
+    lines = lines.map(line => this.parseLine(line, filePath));
     return lines.join('\n');
   }
 
-  protected parseLine = (line: string, filePath: string): string =>
-  {
-    const transformedLine = line.replace(this.rule, (substr: string, moduleId: string): string => {
+  private readonly parseLine = (line: string, filePath: string): string => {
+    const transformedLine = line.replace(
+      this.singleLineRule,
+      (substr: string, moduleId: string): string => {
+        const relativeModule = resolvePath(moduleId, filePath, {
+          root: this.root,
+          alias: this.aliases,
+        });
 
-      let relativeModule = resolvePath(
-        moduleId,
-        filePath,
-        { root: this.root, alias: this.aliases },
-      );
+        if (!relativeModule) {
+          return substr;
+        }
 
-      if (! relativeModule) {
-        return substr;
-      }
-
-      relativeModule = relativeModule.replace('../', '');
-
-      return substr.replace(moduleId, relativeModule);
-    });
+        return substr.replace(moduleId, relativeModule);
+      },
+    );
 
     return transformedLine;
-  }
+  };
+
+  private readonly joinImports = (lines: string[]) => {
+    const returnArr = [];
+    let foundMultiLineImport = false;
+
+    for (const line of lines) {
+      const multiLineRule = { b: /^import {/, e: /^} from '.*';$/ };
+      if (foundMultiLineImport) {
+        returnArr[returnArr.length - 1] += line;
+      } else {
+        returnArr.push(line);
+      }
+      if (line.match(multiLineRule.e)) {
+        foundMultiLineImport = false;
+        returnArr[returnArr.length - 1].replace('\\', '');
+      }
+
+      if (!line.match(this.singleLineRule) && line.match(multiLineRule.b)) {
+        foundMultiLineImport = true;
+      }
+    }
+    return returnArr;
+  };
 }

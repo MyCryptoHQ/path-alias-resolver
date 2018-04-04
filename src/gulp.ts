@@ -1,5 +1,4 @@
 import { Transform } from 'stream';
-
 import { AliasResolver } from './alias-resolver';
 
 module.exports = (root = '.', aliases: any = {}) => {

@@ -1,29 +1,29 @@
 {
-  "name": "path-alias-resolver",
-  "version": "1.0.3-alpha",
-  "description": "Resolve aliases in js/ts files",
+  "name": "myc-path-alias-resolver",
+  "version": "1.0.4-alpha",
+  "description": "Resolve aliases in ts files",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
-    "lint": "tslint --project ./"
+    "lint": "tslint --project .",
+    "format":
+      "find ./src/ -name '*.ts*' | xargs prettier --write --config ./.prettierrc --config-precedence file-override"
   },
-  "files": [
-    "lib/",
-    "gulp.js"
-  ],
+  "files": ["lib/", "gulp.js"],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/salchichongallo/path-alias-resolver.git"
+    "url": "git@github.com:HenryNguyen5/path-alias-resolver.git"
   },
-  "author": "Jimmy Murillo <salchichongallo1997@gmail.com>",
+  "author": "Henry Nguyen <ngu.henry@protonmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/salchichongallo/path-alias-resolver/issues"
+    "url": "https://github.com/HenryNguyen5/path-alias-resolver/issues"
   },
-  "homepage": "https://github.com/salchichongallo/path-alias-resolver#readme",
+  "homepage": "https://github.com/HenryNguyen5/path-alias-resolver#readme",
   "devDependencies": {
     "@types/node": "^8.5.1",
-    "tslint": "^5.8.0",
+    "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.10.0",
     "typescript": "^2.6.2"
   },
   "dependencies": {
