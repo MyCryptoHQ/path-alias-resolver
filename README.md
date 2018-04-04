@@ -91,16 +91,21 @@ gulp.task('default', () => {
 
 ## Breaking gulpfile.js down
 
-`['./src/**/*.ts', '!./src/**/*.spec.ts', '!./src/**/*.test.ts']`
+```js 
+['./src/**/*.ts', '!./src/**/*.spec.ts', '!./src/**/*.test.ts']
+```
 
 Ignore any `*.spec.ts` or `*.test.ts` files while including all other `.ts` files in `src`
 
-`alias('.', { '@src': './src' })`
+```js 
+alias('.', { '@src': './src' })
+```
 
 The first parameter corresponds to your `baseUrl` setting in `tsconfig.json`.
 
 The second parameter is an object of mappings from the `paths` key in `tsconfig.json` to its value.
-
-`gulp.dest('./dist/lib')`
+```js 
+gulp.dest('./dist/lib')
+```
 
 Pass the resulting transformed files to `./dist/list`
