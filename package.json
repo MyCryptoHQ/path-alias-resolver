@@ -1,5 +1,5 @@
 {
-  "name": "myc-path-alias-resolver",
+  "name": "mycrypto-path-alias-resolver",
   "version": "1.0.4-alpha",
   "description": "Resolve aliases in ts files",
   "main": "lib/index.js",
