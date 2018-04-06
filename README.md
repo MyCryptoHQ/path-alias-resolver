@@ -1,10 +1,10 @@
-# myc-path-alias-resolver
+# mycrypto-path-alias-resolver
 
 Resolve aliases in ts files. Useful for when you want to publish a package with the `typings` file in `package.json`, as a project consuming your package will not respect your package's baseurl and path mappings. This will convert all path mappings to relative paths.
 
 # Installation
 
-`npm i -D myc-path-alias-resolver`
+`npm i -D mycrypto-path-alias-resolver`
 
 # Caveats
 
@@ -93,20 +93,20 @@ gulp.task('default', () => {
 
 ## Breaking gulpfile.js down
 
-```js 
+```js
 ['./src/**/*.ts', '!./src/**/*.spec.ts', '!./src/**/*.test.ts']
 ```
 
 Ignore any `*.spec.ts` or `*.test.ts` files while including all other `.ts` files in `src`
 
-```js 
+```js
 alias('.', { '@src': './src' })
 ```
 
 The first parameter corresponds to your `baseUrl` setting in `tsconfig.json`.
 
 The second parameter is an object of mappings from the `paths` key in `tsconfig.json` to its value.
-```js 
+```js
 gulp.dest('./dist/lib')
 ```
 
