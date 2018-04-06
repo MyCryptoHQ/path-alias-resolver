@@ -1,4 +1,4 @@
-# path-alias-resolver
+# myc-path-alias-resolver
 
 Resolve aliases in ts files. Useful for when you want to publish a package with the `typings` file in `package.json`, as a project consuming your package will not respect your package's baseurl and path mappings. This will convert all path mappings to relative paths.
 
@@ -21,11 +21,13 @@ Due to the nature of the regex used to resolve multi-line imports, it currently 
 }
 ```
 
+Also, support for resolving aliased exports such as `export * from '@src/ethUnits';` is not implemented
+
 # How to use
 
 Let's say you have a project that has its source files in `<rootDir>/src`, and you want to ignore any `*.spec.ts` or `*.test.ts` files.
 
-## Example tsconfig.json
+### Example tsconfig.json
 
 ```json
 {
@@ -56,7 +58,7 @@ Let's say you have a project that has its source files in `<rootDir>/src`, and y
 }
 ```
 
-Example File Tree
+### Example File Tree
 
 ```
 ├── coverage
@@ -75,7 +77,7 @@ Example File Tree
 └── tslint.json
 ```
 
-Corresponding script `gulpfile.js` to use with above setup
+### Corresponding script `gulpfile.js` to use with above setup
 
 ```js
 const gulp = require('gulp');
@@ -91,16 +93,21 @@ gulp.task('default', () => {
 
 ## Breaking gulpfile.js down
 
-`['./src/**/*.ts', '!./src/**/*.spec.ts', '!./src/**/*.test.ts']`
+```js 
+['./src/**/*.ts', '!./src/**/*.spec.ts', '!./src/**/*.test.ts']
+```
 
 Ignore any `*.spec.ts` or `*.test.ts` files while including all other `.ts` files in `src`
 
-`alias('.', { '@src': './src' })`
+```js 
+alias('.', { '@src': './src' })
+```
 
 The first parameter corresponds to your `baseUrl` setting in `tsconfig.json`.
 
 The second parameter is an object of mappings from the `paths` key in `tsconfig.json` to its value.
-
-`gulp.dest('./dist/lib')`
+```js 
+gulp.dest('./dist/lib')
+```
 
 Pass the resulting transformed files to `./dist/list`
