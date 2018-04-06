@@ -7,22 +7,20 @@
     "build": "tsc",
     "lint": "tslint --project .",
     "prepublishOnly": "npm i && npm run lint && npm run build",
-    "format": "find ./src/ -name '*.ts*' | xargs prettier --write --config ./.prettierrc --config-precedence file-override"
+    "format":
+      "find ./src/ -name '*.ts*' | xargs prettier --write --config ./.prettierrc --config-precedence file-override"
   },
-  "files": [
-    "lib/",
-    "gulp.js"
-  ],
+  "files": ["lib/", "gulp.js"],
   "repository": {
     "type": "git",
-    "url": "git@github.com:HenryNguyen5/path-alias-resolver.git"
+    "url": "git@github.com:MyCryptoHQ/path-alias-resolver.git"
   },
-  "author": "Henry Nguyen <ngu.henry@protonmail.com>",
+  "author": "MyCrypto <henry@mycrypto.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/HenryNguyen5/path-alias-resolver/issues"
+    "url": "https://github.com/MyCryptoHQ/path-alias-resolver/issues"
   },
-  "homepage": "https://github.com/HenryNguyen5/path-alias-resolver#readme",
+  "homepage": "https://github.com/MyCryptoHQ/path-alias-resolver#readme",
   "devDependencies": {
     "@types/node": "^8.5.1",
     "tslint": "^5.9.1",
